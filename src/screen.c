@@ -1,6 +1,8 @@
-#include "screen.h"
-#include <gst/gst.h>
+#include "../include/screen.h"
 
+#ifdef __linux__
+#define SOURCE "ximagesrc"
+#endif
 
 void init_screen_sender_data(Screen_Sender_Data* data, gchar* target_ip)
 {
@@ -10,7 +12,7 @@ void init_screen_sender_data(Screen_Sender_Data* data, gchar* target_ip)
     data->pipeline = gst_pipeline_new("sender-pipeline");
 
     // Source
-    data->source = gst_element_factory_make("ximagesrc", "source");
+    data->source = gst_element_factory_make(SOURCE, "source");
         
     // Caps filter and params
     data->caps_filter = gst_element_factory_make ("capsfilter", "capsfilter");
@@ -44,7 +46,7 @@ void init_screen_sender_data(Screen_Sender_Data* data, gchar* target_ip)
     
 }
 
-void launch_screen_sender()
+void launch_screen_sender(gchar* target_ip)
 {
     Screen_Sender_Data sender_data;
     GstBus* bus;
@@ -52,9 +54,8 @@ void launch_screen_sender()
     GstMessage* msg;
     gboolean terminate = FALSE;
 
-    init_screen_sender_data(&sender_data, "");
+    init_screen_sender_data(&sender_data, target_ip);
     
-    g_print("here");
     // Adding binaries
     gst_bin_add_many(GST_BIN(sender_data.pipeline),
                      sender_data.source,
@@ -124,8 +125,13 @@ void launch_screen_sender()
                     {
                         GstState old_state, new_state, pending_state;
                         gst_message_parse_state_changed (msg, &old_state, &new_state, &pending_state);
-                        g_print ("Pipeline state changed from %s to %s:\n",
-                            gst_element_state_get_name (old_state), gst_element_state_get_name (new_state));
+                        
+                        /*g_print ("Pipeline state changed from %s to %s:\n",
+                            gst_element_state_get_name (old_state), gst_element_state_get_name (new_state));*/
+                        if (old_state == GST_STATE_PAUSED && new_state == GST_STATE_PLAYING)
+                        {
+                            g_print("Starting screen_sharing to %s.", target_ip);
+                        }
                     }
                     break;
                 default:

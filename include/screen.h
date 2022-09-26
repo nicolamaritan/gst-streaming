@@ -17,7 +17,7 @@ typedef struct _Screen_Sender_Data
 
 } Screen_Sender_Data;
 
-void launch_screen_sender();
+void launch_screen_sender(gchar* target_ip);
 void init_screen_sender_data(Screen_Sender_Data* data, gchar* target_ip);
 
 #endif

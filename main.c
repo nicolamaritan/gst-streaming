@@ -1,7 +1,9 @@
 #include "screen.h"
 
-int main()
+int main(int argc, char* argv[])
 {
-    gst_init(NULL, NULL);
+    gst_init(&argc, &argv);
+    
+    launch_screen_sender();
     
 }

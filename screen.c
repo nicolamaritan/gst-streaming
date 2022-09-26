@@ -1,23 +1,14 @@
+#include "screen.h"
 #include <gst/gst.h>
 
-typedef struct _Screen_Sender_Data
-{
-    GstElement* pipeline;
 
-    GstElement* source;
-    GstElement* caps_filter;
-    GstElement* convert;
-    GstElement* encoder;
-    GstElement* parser;
-    GstElement* pay;
-    GstElement* sink;
-
-} Screen_Sender_Data;
-
-void init_screen_sender_data(Screen_Sender_Data* data)
+void init_screen_sender_data(Screen_Sender_Data* data, gchar* target_ip)
 {
     // gst-launch-1.0 ximagesrc ! video/x-raw ! videoconvert ! x264enc ! h264parse ! rtph264pay ! udpsink host=127.0.0.1 port=5000
     
+    // empty pipeline
+    data->pipeline = gst_pipeline_new("sender-pipeline");
+
     // Source
     data->source = gst_element_factory_make("ximagesrc", "source");
         
@@ -46,17 +37,25 @@ void init_screen_sender_data(Screen_Sender_Data* data)
 
     // Sink and params
     data->sink = gst_element_factory_make("udpsink", "sink");
-    g_object_set(data->sink, "host", "192.168.1.4", NULL);
+    //g_object_set(data->sink, "host", "192.168.1.4", NULL);
+    g_object_set(data->sink, "host", "127.0.0.1", NULL);
     g_object_set(data->sink, "port", 5000, NULL);
+
+    
 }
 
 void launch_screen_sender()
 {
     Screen_Sender_Data sender_data;
-    init_screen_sender_data(&sender_data);
+    GstBus* bus;
+    GstStateChangeReturn ret;
+    GstMessage* msg;
+    gboolean terminate = FALSE;
+
+    init_screen_sender_data(&sender_data, "");
     
-    
-        // Adding binaries
+    g_print("here");
+    // Adding binaries
     gst_bin_add_many(GST_BIN(sender_data.pipeline),
                      sender_data.source,
                      sender_data.caps_filter,
@@ -79,8 +78,10 @@ void launch_screen_sender()
     {
         g_printerr ("Elements could not be linked.\n");
         gst_object_unref (sender_data.pipeline);
-        return 1;
+        return;
     }
+
+    
 
     ret = gst_element_set_state(sender_data.pipeline, GST_STATE_PLAYING);
 
@@ -88,7 +89,7 @@ void launch_screen_sender()
     {
         g_printerr ("Unable to set the pipeline to the playing state.\n");
         gst_object_unref (sender_data.pipeline);
-        return 1;
+        return;
     } 
 
     bus = gst_element_get_bus(sender_data.pipeline);
@@ -119,7 +120,8 @@ void launch_screen_sender()
                     break;
                 
                 case GST_MESSAGE_STATE_CHANGED:
-                    if (GST_MESSAGE_SRC (msg) == GST_OBJECT (sender_data.pipeline)) {
+                    if (GST_MESSAGE_SRC (msg) == GST_OBJECT (sender_data.pipeline)) 
+                    {
                         GstState old_state, new_state, pending_state;
                         gst_message_parse_state_changed (msg, &old_state, &new_state, &pending_state);
                         g_print ("Pipeline state changed from %s to %s:\n",
@@ -140,7 +142,7 @@ void launch_screen_sender()
     gst_object_unref(bus);
     gst_element_set_state(sender_data.pipeline, GST_STATE_NULL);
     gst_object_unref(sender_data.pipeline);
-    return 0;
+    return;
 
 
 }

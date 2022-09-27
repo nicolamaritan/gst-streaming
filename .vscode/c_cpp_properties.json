@@ -22,13 +22,14 @@
                 "/usr/include/pixman-1",
                 "/usr/include/uuid",
                 "/usr/include/freetype2",
-                "/usr/include/gdk-pixbuf-2.0",
+                "/usr/include/gdk-pixbuf-2.0"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "gnu17",
             "cppStandard": "gnu++17",
-            "intelliSenseMode": "linux-gcc-x64"
+            "intelliSenseMode": "linux-gcc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
         }
     ],
     "version": 4

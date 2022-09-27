@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/nicolamaritan/Repositories/video-streamer/src/screen.c" "CMakeFiles/screen.dir/src/screen.c.o" "gcc" "CMakeFiles/screen.dir/src/screen.c.o.d"
+  "/mnt/media/Repositories/video-streamer/src/screen.c" "CMakeFiles/screen.dir/src/screen.c.o" "gcc" "CMakeFiles/screen.dir/src/screen.c.o.d"
   )
 
 # Targets to which this target links.

@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nicolamaritan/Repositories/video-streamer
+CMAKE_SOURCE_DIR = /mnt/media/Repositories/video-streamer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nicolamaritan/Repositories/video-streamer/build
+CMAKE_BINARY_DIR = /mnt/media/Repositories/video-streamer/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/screen.dir/depend.make
@@ -72,16 +72,16 @@ include CMakeFiles/screen.dir/flags.make
 CMakeFiles/screen.dir/src/screen.c.o: CMakeFiles/screen.dir/flags.make
 CMakeFiles/screen.dir/src/screen.c.o: ../src/screen.c
 CMakeFiles/screen.dir/src/screen.c.o: CMakeFiles/screen.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nicolamaritan/Repositories/video-streamer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/screen.dir/src/screen.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/screen.dir/src/screen.c.o -MF CMakeFiles/screen.dir/src/screen.c.o.d -o CMakeFiles/screen.dir/src/screen.c.o -c /home/nicolamaritan/Repositories/video-streamer/src/screen.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/media/Repositories/video-streamer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/screen.dir/src/screen.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/screen.dir/src/screen.c.o -MF CMakeFiles/screen.dir/src/screen.c.o.d -o CMakeFiles/screen.dir/src/screen.c.o -c /mnt/media/Repositories/video-streamer/src/screen.c
 
 CMakeFiles/screen.dir/src/screen.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/screen.dir/src/screen.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/nicolamaritan/Repositories/video-streamer/src/screen.c > CMakeFiles/screen.dir/src/screen.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/media/Repositories/video-streamer/src/screen.c > CMakeFiles/screen.dir/src/screen.c.i
 
 CMakeFiles/screen.dir/src/screen.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/screen.dir/src/screen.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/nicolamaritan/Repositories/video-streamer/src/screen.c -o CMakeFiles/screen.dir/src/screen.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/media/Repositories/video-streamer/src/screen.c -o CMakeFiles/screen.dir/src/screen.c.s
 
 # Object files for target screen
 screen_OBJECTS = \
@@ -93,7 +93,7 @@ screen_EXTERNAL_OBJECTS =
 libscreen.a: CMakeFiles/screen.dir/src/screen.c.o
 libscreen.a: CMakeFiles/screen.dir/build.make
 libscreen.a: CMakeFiles/screen.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/nicolamaritan/Repositories/video-streamer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libscreen.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/media/Repositories/video-streamer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libscreen.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/screen.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/screen.dir/link.txt --verbose=$(VERBOSE)
 
@@ -106,6 +106,6 @@ CMakeFiles/screen.dir/clean:
 .PHONY : CMakeFiles/screen.dir/clean
 
 CMakeFiles/screen.dir/depend:
-	cd /home/nicolamaritan/Repositories/video-streamer/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/nicolamaritan/Repositories/video-streamer /home/nicolamaritan/Repositories/video-streamer /home/nicolamaritan/Repositories/video-streamer/build /home/nicolamaritan/Repositories/video-streamer/build /home/nicolamaritan/Repositories/video-streamer/build/CMakeFiles/screen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /mnt/media/Repositories/video-streamer/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/media/Repositories/video-streamer /mnt/media/Repositories/video-streamer /mnt/media/Repositories/video-streamer/build /mnt/media/Repositories/video-streamer/build /mnt/media/Repositories/video-streamer/build/CMakeFiles/screen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/screen.dir/depend
 

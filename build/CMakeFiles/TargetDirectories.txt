@@ -1,4 +1,4 @@
-/home/nicolamaritan/Repositories/video-streamer/build/CMakeFiles/screen.dir
-/home/nicolamaritan/Repositories/video-streamer/build/CMakeFiles/video_streamer.dir
-/home/nicolamaritan/Repositories/video-streamer/build/CMakeFiles/edit_cache.dir
-/home/nicolamaritan/Repositories/video-streamer/build/CMakeFiles/rebuild_cache.dir
+/mnt/media/Repositories/video-streamer/build/CMakeFiles/screen.dir
+/mnt/media/Repositories/video-streamer/build/CMakeFiles/video_streamer.dir
+/mnt/media/Repositories/video-streamer/build/CMakeFiles/edit_cache.dir
+/mnt/media/Repositories/video-streamer/build/CMakeFiles/rebuild_cache.dir

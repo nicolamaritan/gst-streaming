@@ -1,9 +1,5 @@
 #include "../include/screen.h"
 
-#ifdef __linux__
-#define SOURCE "ximagesrc"
-#endif
-
 void init_screen_sender_data(Screen_Sender_Data* data, gchar* target_ip)
 {
     // gst-launch-1.0 ximagesrc ! video/x-raw ! videoconvert ! x264enc ! h264parse ! rtph264pay ! udpsink host=127.0.0.1 port=5000
@@ -12,7 +8,7 @@ void init_screen_sender_data(Screen_Sender_Data* data, gchar* target_ip)
     data->pipeline = gst_pipeline_new("sender-pipeline");
 
     // Source
-    data->source = gst_element_factory_make(SOURCE, "source");
+    data->source = gst_element_factory_make("ximagesrc", "source");
         
     // Caps filter and params
     data->caps_filter = gst_element_factory_make ("capsfilter", "capsfilter");

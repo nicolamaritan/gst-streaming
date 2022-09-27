@@ -27,15 +27,20 @@ add_library(screen
         src/screen.c
         include/screen.h)
 
+add_library(sender_parse
+        src/sender_parse.c
+        include/sender_parse.h)   
 
-add_executable( video_streamer
-    src/main.c
-    src/screen.c)
+add_executable(sender
+    src/sender.c
+    src/screen.c
+    src/sender_parse.c)
 
-target_link_libraries(video_streamer
+target_link_libraries(sender
     screen
-    ${GSTLIBS_LIBRARIES})
+    ${GSTLIBS_LIBRARIES}
+    sender_parse)
 
-# Include GSTLIBS dirs to video_streamer and screen
-target_include_directories(video_streamer PUBLIC ${GSTLIBS_INCLUDE_DIRS})
+# Include GSTLIBS dirs to sender and screen
+target_include_directories(sender PUBLIC ${GSTLIBS_INCLUDE_DIRS})
 target_include_directories(screen PUBLIC ${GSTLIBS_INCLUDE_DIRS})

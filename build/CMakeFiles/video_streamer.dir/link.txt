@@ -1,1 +1,0 @@
-/usr/bin/gcc -g CMakeFiles/video_streamer.dir/src/main.c.o CMakeFiles/video_streamer.dir/src/screen.c.o -o video_streamer  libscreen.a -lgstreamer-1.0 -lgobject-2.0 -lglib-2.0 

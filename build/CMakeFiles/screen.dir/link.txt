@@ -1,2 +1,0 @@
-/usr/bin/ar qc libscreen.a CMakeFiles/screen.dir/src/screen.c.o
-/usr/bin/ranlib libscreen.a

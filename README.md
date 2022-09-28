@@ -8,8 +8,8 @@ Currently supporting Linux on X11.
 ### Screen Sharing
 #### Linux
 ```
-$ ./sender -i _local ip address_  # On sender system
-$ ./receiver                      # On receiver system
+$ ./sender -i _address_ # On sender system
+$ ./receiver            # On receiver system
 ```
 
 ## Installation

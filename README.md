@@ -1,7 +1,6 @@
 # video-streamer
 ## Summary
 Application demo and for video streaming on GStreamer.
-
 Currently supporting Linux on X11.
 
 ## Usage

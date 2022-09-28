@@ -1,12 +1,12 @@
-#ifndef PARSE
-#define PARSE
+#ifndef SENDER_PARSE_H
+#define SENDER_PARSE_H
 
-typedef struct _Arguments
+typedef struct _Sender_Arguments
 {
     char* receiver_ip;
-} Arguments;
+} Sender_Arguments;
 
 int flag_has_argument(int i, int argc, char* argv[]);
-int parse_arguments(Arguments* args, int argc, char* argv[]);
+int parse_arguments(Sender_Arguments* args, int argc, char* argv[]);
 
 #endif

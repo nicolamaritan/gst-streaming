@@ -1,5 +1,5 @@
-#ifndef SCREEN_H
-#define SCREEN_H
+#ifndef SENDER_SCREEN_H
+#define SENDER_SCREEN_H
 
 #include <gst/gst.h>
 
@@ -13,6 +13,7 @@ typedef struct _Screen_Sender_Data
     GstElement* encoder;
     GstElement* parser;
     GstElement* pay;
+    GstElement* queue;
     GstElement* sink;
 
 } Screen_Sender_Data;

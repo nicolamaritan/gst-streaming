@@ -23,9 +23,10 @@ pkg_check_modules(GSTLIBS REQUIRED
 #         /usr/include/gstreamer-1.0
 #         /usr/include/gio-unix-2.0)
 
-add_library(screen
-        src/screen.c
-        include/screen.h)
+# Sender
+add_library(sender_screen
+        src/sender_screen.c
+        include/sender_screen.h)
 
 add_library(sender_parse
         src/sender_parse.c
@@ -33,14 +34,38 @@ add_library(sender_parse
 
 add_executable(sender
     src/sender.c
-    src/screen.c
+    src/sender_screen.c
     src/sender_parse.c)
 
 target_link_libraries(sender
-    screen
+    sender_screen
     ${GSTLIBS_LIBRARIES}
     sender_parse)
 
 # Include GSTLIBS dirs to sender and screen
 target_include_directories(sender PUBLIC ${GSTLIBS_INCLUDE_DIRS})
-target_include_directories(screen PUBLIC ${GSTLIBS_INCLUDE_DIRS})
+target_include_directories(sender_screen PUBLIC ${GSTLIBS_INCLUDE_DIRS})
+
+
+# Receiver
+add_library(receiver_screen
+        src/receiver_screen.c
+        include/receiver_screen.h)
+
+add_library(receiver_parse
+        src/receiver_parse.c
+        include/receiver_parse.h)   
+
+add_executable(receiver
+    src/receiver.c
+    src/receiver_screen.c
+    src/receiver_parse.c)
+
+target_link_libraries(receiver
+    receiver_screen
+    ${GSTLIBS_LIBRARIES}
+    receiver_parse)
+
+# Include GSTLIBS dirs to receiver and screen
+target_include_directories(receiver PUBLIC ${GSTLIBS_INCLUDE_DIRS})
+target_include_directories(receiver_screen PUBLIC ${GSTLIBS_INCLUDE_DIRS})

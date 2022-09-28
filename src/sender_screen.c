@@ -1,8 +1,9 @@
-#include "../include/screen.h"
+#include "../include/sender_screen.h"
 
 void init_screen_sender_data(Screen_Sender_Data* data, gchar* target_ip)
 {
     // gst-launch-1.0 ximagesrc ! video/x-raw ! videoconvert ! x264enc ! h264parse ! rtph264pay ! udpsink host=127.0.0.1 port=5000
+    // gst-launch-1.0 ximagesrc ! video/x-raw ! videoconvert ! x264enc tune=zerolatency bitrate=1000 byte-stream=TRUE threads=4 ! h264parse ! rtph264pay ! udpsink host=127.0.0.1 port=5000
     
     // empty pipeline
     data->pipeline = gst_pipeline_new("sender-pipeline");
@@ -33,6 +34,9 @@ void init_screen_sender_data(Screen_Sender_Data* data, gchar* target_ip)
     // Pay
     data->pay = gst_element_factory_make("rtph264pay", "pay");
 
+    // Queue
+    data->queue = gst_element_factory_make("queue", "queue");
+
     // Sink and params
     data->sink = gst_element_factory_make("udpsink", "sink");
     //g_object_set(data->sink, "host", "192.168.1.4", NULL);
@@ -60,6 +64,7 @@ void launch_screen_sender(gchar* target_ip)
                      sender_data.encoder,
                      sender_data.parser,
                      sender_data.pay,
+                     sender_data.queue,
                      sender_data.sink,
                      NULL);
 
@@ -70,6 +75,7 @@ void launch_screen_sender(gchar* target_ip)
                            sender_data.encoder,
                            sender_data.parser,
                            sender_data.pay,
+                           sender_data.queue,
                            sender_data.sink,
                            NULL))
     {

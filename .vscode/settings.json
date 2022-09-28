@@ -1,6 +1,8 @@
 {
     "cmake.configureOnOpen": true,
     "files.associations": {
-        "screen.h": "c"
+        "screen.h": "c",
+        "receiver_parse.h": "c",
+        "receiver_screen.h": "c"
     }
 }

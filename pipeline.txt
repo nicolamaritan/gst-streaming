@@ -1,0 +1,8 @@
+Sender:
+gst-launch-1.0 v4l2src ! video/x-raw,width=640,height=480 ! videoconvert  !  x264enc ! h264parse ! rtph264pay !  udpsink host=127.0.0.1 port=5000
+
+Other sender:
+gst-launch-1.0 ximagesrc ! video/x-raw ! videoconvert ! x264enc ! h264parse ! rtph264pay ! udpsink host=127.0.0.1 port=5000
+
+Receiver:
+gst-launch-1.0 -v udpsrc port=5000 caps="application/x-rtp,media=(string)video,encoding-name=(string)H264,payload=(int)96" ! rtpjitterbuffer ! rtph264depay ! decodebin ! videoconvert ! autovideosink

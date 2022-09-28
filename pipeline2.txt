@@ -1,6 +1,0 @@
-Sender:
-gst-launch-1.0 ximagesrc ! video/x-raw ! videoconvert ! x264enc tune=zerolatency bitrate=1000 byte-stream=TRUE threads=4 ! h264parse ! rtph264pay  ! queue ! udpsink host=127.0.0.1 port=5000
-
-
-Receiver:
-gst-launch-1.0 -v udpsrc port=5000 caps="application/x-rtp,media=(string)video,encoding-name=(string)H264,payload=(int)96" ! rtpjitterbuffer ! rtph264depay ! decodebin ! videoconvert ! queue ! autovideosink

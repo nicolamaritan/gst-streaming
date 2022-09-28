@@ -1,4 +1,4 @@
-#include "../include/sender_screen.h"
+#include "sender_screen.h"
 
 void init_screen_sender_data(Screen_Sender_Data* data, gchar* target_ip)
 {

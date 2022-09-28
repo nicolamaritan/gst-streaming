@@ -1,4 +1,4 @@
-#include "../include/receiver_screen.h"
+#include "receiver_screen.h"
 
 static void pad_added_handler(GstElement* src, GstPad* new_pad, Screen_Receiver_Data* data)
 {
@@ -30,10 +30,10 @@ void init_screen_receiver_data(Screen_Receiver_Data* data)
 
     g_object_set(G_OBJECT(data->source), "caps", udpcaps , NULL);
 
-    // Buffer
+    // Buffer - Reorders and removes duplicate RTP packets from udpsrc
     data->buffer = gst_element_factory_make("rtpjitterbuffer", "buffer");
     
-    // Depay
+    // Depay - Extracts H264 video from RTP packets
     data->depay = gst_element_factory_make("rtph264depay", "depay");
 
     // Decode
@@ -113,6 +113,7 @@ void launch_screen_receiver()
     
     do 
     {
+        // Getting message from the bus
         msg = gst_bus_timed_pop_filtered (bus, GST_CLOCK_TIME_NONE,
             GST_MESSAGE_STATE_CHANGED | GST_MESSAGE_ERROR | GST_MESSAGE_EOS);
 
@@ -128,12 +129,12 @@ void launch_screen_receiver()
                     g_printerr ("Debugging information: %s\n", debug_info ? debug_info : "none");
                     g_clear_error (&err);
                     g_free (debug_info);
-                    terminate = TRUE;
+                    terminate = TRUE;   // If error exits.
                     break;
 
                 case GST_MESSAGE_EOS:
                     g_print ("End-Of-Stream reached.\n");
-                    terminate = TRUE;
+                    terminate = TRUE;   // If end of stream exits.
                     break;
                 
                 case GST_MESSAGE_STATE_CHANGED:

@@ -8,20 +8,7 @@ find_package(PkgConfig REQUIRED)
 # Check for gstreamer-1.0
 pkg_check_modules(GSTLIBS REQUIRED
         gstreamer-1.0
-        #gobject-2.0
-        #glib-2.0
-        #gstreamer-sdp-1.0
-        #gstreamer-pbutils-1.0
-        #gstreamer-check-1.0
 )
-
-
-# include_directories(
-#         include
-#         /usr/include/glib-2.0
-#         /usr/lib64/glib-2.0/include
-#         /usr/include/gstreamer-1.0
-#         /usr/include/gio-unix-2.0)
 
 # Sender
 add_library(sender_screen
@@ -42,9 +29,10 @@ target_link_libraries(sender
     ${GSTLIBS_LIBRARIES}
     sender_parse)
 
-# Include GSTLIBS dirs to sender and screen
-target_include_directories(sender PUBLIC ${GSTLIBS_INCLUDE_DIRS})
-target_include_directories(sender_screen PUBLIC ${GSTLIBS_INCLUDE_DIRS})
+# Include GSTLIBS and include dirs to sender and screen
+target_include_directories(sender PUBLIC ${GSTLIBS_INCLUDE_DIRS} include)
+target_include_directories(sender_screen PUBLIC ${GSTLIBS_INCLUDE_DIRS} include)
+target_include_directories(sender_parse PUBLIC include)
 
 
 # Receiver
@@ -66,6 +54,7 @@ target_link_libraries(receiver
     ${GSTLIBS_LIBRARIES}
     receiver_parse)
 
-# Include GSTLIBS dirs to receiver and screen
-target_include_directories(receiver PUBLIC ${GSTLIBS_INCLUDE_DIRS})
-target_include_directories(receiver_screen PUBLIC ${GSTLIBS_INCLUDE_DIRS})
+# Include GSTLIBS and include dirs to receiver and screen
+target_include_directories(receiver PUBLIC ${GSTLIBS_INCLUDE_DIRS} include)
+target_include_directories(receiver_screen PUBLIC ${GSTLIBS_INCLUDE_DIRS} include)
+target_include_directories(receiver_parse PUBLIC include)

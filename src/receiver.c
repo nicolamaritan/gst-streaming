@@ -1,5 +1,5 @@
-#include "../include/receiver_screen.h"
-#include "../include/receiver_parse.h"
+#include "receiver_screen.h"
+#include "receiver_parse.h"
 
 int main(int argc, char* argv[])
 {

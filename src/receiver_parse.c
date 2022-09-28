@@ -1,4 +1,4 @@
-#include "../include/receiver_parse.h"
+#include "receiver_parse.h"
 #include <string.h>
 #include <stdio.h>
 

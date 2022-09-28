@@ -1,5 +1,5 @@
-#include "../include/sender_screen.h"
-#include "../include/sender_parse.h"
+#include "sender_parse.h"
+#include "sender_screen.h"
 
 int main(int argc, char* argv[])
 {
@@ -15,7 +15,4 @@ int main(int argc, char* argv[])
 
     launch_screen_sender(args.receiver_ip);
 
-    
-    
-    
 }

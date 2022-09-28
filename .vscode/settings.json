@@ -3,6 +3,7 @@
     "files.associations": {
         "screen.h": "c",
         "receiver_parse.h": "c",
-        "receiver_screen.h": "c"
+        "receiver_screen.h": "c",
+        "sender_parse.h": "c"
     }
 }

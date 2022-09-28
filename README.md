@@ -17,6 +17,6 @@ $ cd build
 
 Run:
 ```
-cmake ..
-make
+$ cmake ..
+$ make
 ```
